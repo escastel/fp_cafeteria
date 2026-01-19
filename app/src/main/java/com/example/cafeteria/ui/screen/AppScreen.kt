@@ -68,7 +68,7 @@ fun AppScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        AppButton(text = "Añadir pedido (" + (amount * 10).toString() + "€)") {
+        AppButton(text = "Añadir pedido (${amount * 10}€)") {
             if (amount > 0){
                 val index = orderList.indexOfFirst { it.product == option }
                 if (index != -1){
@@ -99,7 +99,7 @@ fun AppScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Lista de pedidos (" + orderList.size + ") para $username",
+            text = "Lista de pedidos (${orderList.size}) para $username",
             color = Color.Green,
             modifier = Modifier.fillMaxWidth()
         )
