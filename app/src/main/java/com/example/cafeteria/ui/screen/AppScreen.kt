@@ -68,12 +68,24 @@ fun AppScreen(modifier: Modifier = Modifier) {
 
         AppButton(text = "Añadir pedido (" + (amount * 10).toString() + "€)") {
             if (amount > 0){
-                orderList = orderList + ItemUiModel(
-                    drawable = productImages.getValue(option),
-                    product = option,
-                    price = amount * 10,
-                    amount = amount
-                )
+                val index = orderList.indexOfFirst { it.product == option }
+                if (index != -1){
+                    val updateOrder = orderList[index].copy(
+                        amount = orderList[index].amount + amount,
+                        price = orderList[index].price + (amount * 10)
+                    )
+                    orderList = orderList.toMutableList().apply {
+                        set(index, updateOrder)
+                    }
+                }
+                else {
+                    orderList = orderList + ItemUiModel(
+                        drawable = productImages.getValue(option),
+                        product = option,
+                        price = amount * 10,
+                        amount = amount
+                    )
+                }
                 amount = 0
             }
         }
