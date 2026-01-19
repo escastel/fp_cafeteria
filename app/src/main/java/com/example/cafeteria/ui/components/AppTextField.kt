@@ -1,4 +1,4 @@
-package com.example.cafeteria.components
+package com.example.cafeteria.ui.components
 
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField

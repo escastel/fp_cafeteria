@@ -1,4 +1,4 @@
-package com.example.cafeteria.components
+package com.example.cafeteria.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

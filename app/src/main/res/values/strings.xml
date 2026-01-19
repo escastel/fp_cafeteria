@@ -5,4 +5,7 @@
     <string name="tf_placeholder">Introduce el nombre de usuario</string>
     <string name="text_amount">Cantidad:</string>
     <string name="btn_confirm">Confirmar pedido</string>
+    <string name="op_jamon">Jamón</string>
+    <string name="op_tortilla">Tortilla</string>
+    <string name="op_bacon">Bacon</string>
 </resources>
