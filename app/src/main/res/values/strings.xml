@@ -2,12 +2,17 @@
     <string name="app_name">Cafeteria</string>
     <string name="title_app">Cafetería Politécnico</string>
     <string name="title_dialog">Confirmación del pedido</string>
+    <string name="title_err_dialog">Error en el pedido</string>
     <string name="tf_label">Nombre cliente</string>
     <string name="tf_placeholder">Introduce el nombre de usuario</string>
     <string name="text_amount">Cantidad:</string>
     <string name="text_dialog">Gracias por realizar un pedido en la Cafetería Politécnico</string>
+    <string name="text_err_user">Por favor, introduce tu nombre antes de confirmar el pedido</string>
+    <string name="text_err_prod">Por favor, añade al menos un producto al pedido</string>
+    <string name="text_err_user_prod">Por favor, introduce tu nombre y añade al menos un producto al pedido</string>
     <string name="btn_confirm">Confirmar pedido</string>
     <string name="btn_accept">Aceptar</string>
+    <string name="btn_err">Entendido</string>
     <string name="op_jamon">Jamón</string>
     <string name="op_tortilla">Tortilla</string>
     <string name="op_bacon">Bacon</string>

@@ -29,6 +29,7 @@ import com.example.cafeteria.ui.components.AppAmountSelector
 import com.example.cafeteria.ui.components.AppButton
 import com.example.cafeteria.ui.components.AppCard
 import com.example.cafeteria.ui.components.AppConfirmDialog
+import com.example.cafeteria.ui.components.AppErrorDialog
 import com.example.cafeteria.ui.components.AppHeader
 import com.example.cafeteria.ui.components.AppProductSelector
 import com.example.cafeteria.ui.components.AppTextField
@@ -41,6 +42,7 @@ fun AppScreen(modifier: Modifier = Modifier) {
     var option by remember { mutableStateOf("Jamón") }
     var orderList by remember { mutableStateOf(listOf<ItemUiModel>()) }
     var showDialog by remember { mutableStateOf(false) }
+    var showErrorDialog by remember { mutableStateOf(false) }
     val productImages = ItemRepository().getProductImagesData()
 
     Column(
@@ -117,8 +119,10 @@ fun AppScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
 
         AppButton(text = stringResource(R.string.btn_confirm)) {
-            if (orderList.isNotEmpty() && username.isNotEmpty())
+            if (orderList.isNotEmpty() && username.isNotBlank())
                 showDialog = true
+            else
+                showErrorDialog = true
         }
     }
 
@@ -130,6 +134,21 @@ fun AppScreen(modifier: Modifier = Modifier) {
                 username = ""
                 showDialog = false
             }
+        )
+    }
+
+    if (showErrorDialog){
+        val text: String
+        if (username.isBlank() && orderList.isEmpty())
+            text = stringResource(R.string.text_err_user_prod)
+        else if (username.isBlank())
+            text = stringResource(R.string.text_err_user)
+        else
+            text = stringResource(R.string.text_err_prod)
+
+        AppErrorDialog(
+            text = text,
+            onDismiss = { showErrorDialog = false }
         )
     }
 }
