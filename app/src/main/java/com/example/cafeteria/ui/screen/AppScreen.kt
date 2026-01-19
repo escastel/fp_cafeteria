@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,6 +30,7 @@ import com.example.cafeteria.model.ItemUiModel
 import com.example.cafeteria.ui.components.AppAmountSelector
 import com.example.cafeteria.ui.components.AppButton
 import com.example.cafeteria.ui.components.AppCard
+import com.example.cafeteria.ui.components.AppConfirmDialog
 import com.example.cafeteria.ui.components.AppHeader
 import com.example.cafeteria.ui.components.AppProductSelector
 import com.example.cafeteria.ui.components.AppTextField
@@ -47,6 +50,7 @@ fun AppScreen(modifier: Modifier = Modifier) {
         modifier = modifier
             .padding(16.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
         AppHeader()
 
@@ -88,18 +92,14 @@ fun AppScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        LazyColumn(
-            modifier = Modifier.weight(1f)
-        ) {
-            items(orderList) { order ->
-                AppCard(
-                    image = order.drawable,
-                    product = order.product,
-                    price = order.price.toString(),
-                    amount = order.amount
-                )
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+        orderList.forEach { order ->
+            AppCard(
+                image = order.drawable,
+                product = order.product,
+                price = order.price.toString(),
+                amount = order.amount
+            )
+            Spacer(modifier = Modifier.height(8.dp))
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -110,7 +110,16 @@ fun AppScreen(modifier: Modifier = Modifier) {
         }
     }
 
-    if (showDialog){ }
+    if (showDialog){
+        AppConfirmDialog(
+            onDismiss = { showDialog = false },
+            onConfirm = {
+                orderList = listOf()
+                username = ""
+                showDialog = false
+            }
+        )
+    }
 }
 
 @Preview(showBackground = true)
