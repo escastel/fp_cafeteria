@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Cafeteria</string>
     <string name="title_app">Cafetería Politécnico</string>
+    <string name="tf_label">Nombre cliente</string>
+    <string name="tf_placeholder">Introduce el nombre de usuario</string>
     <string name="text_cant">Cantidad</string>
     <string name="btn_add">Añadir pedido</string>
     <string name="btn_confirm">Confirmar pedido</string>
+    <string name="op_jamon">Jamón</string>
 </resources>
