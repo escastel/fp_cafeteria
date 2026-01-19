@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Cafeteria</string>
+    <string name="title_app">Cafetería Politécnico</string>
+    <string name="text_cant">Cantidad</string>
+    <string name="btn_add">Añadir pedido</string>
+    <string name="btn_confirm">Confirmar pedido</string>
 </resources>
