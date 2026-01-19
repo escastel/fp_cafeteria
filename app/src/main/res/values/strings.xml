@@ -3,8 +3,6 @@
     <string name="title_app">Cafetería Politécnico</string>
     <string name="tf_label">Nombre cliente</string>
     <string name="tf_placeholder">Introduce el nombre de usuario</string>
-    <string name="text_amount">Cantidad</string>
-    <string name="btn_add">Añadir pedido</string>
+    <string name="text_amount">Cantidad:</string>
     <string name="btn_confirm">Confirmar pedido</string>
-    <string name="op_jamon">Jamón</string>
 </resources>

@@ -33,7 +33,8 @@ import com.example.cafeteria.ui.theme.CafeteriaTheme
 fun AppCard(
     @DrawableRes image: Int,
     product: String,
-    price: String
+    price: String,
+    amount: Int
 ) {
     Card(modifier = Modifier.fillMaxWidth()) {
         Row(
@@ -51,7 +52,7 @@ fun AppCard(
             )
             Row{
                 Text(
-                    text = "2 x",
+                    text = amount.toString() + " x",
                     fontStyle = FontStyle.Italic,
                     fontWeight = FontWeight.Bold,
                     style = MaterialTheme.typography.titleLarge,
@@ -78,8 +79,9 @@ fun AppCardPreview(){
     CafeteriaTheme {
         AppCard(
             image = R.drawable.img_jamon,
-            product = stringResource(R.string.op_jamon),
-            price = "20"
+            product = "Jamón",
+            price = "20",
+            amount = 2
         )
     }
 }

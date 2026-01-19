@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
 @Composable
-fun AppSelector(
+fun AppProductSelector(
     option: String,
     onOptionSelected: (String) -> Unit
 ) {
@@ -55,9 +55,9 @@ fun AppSelector(
 
 @Preview
 @Composable
-fun AppSelectorPreview() {
+fun AppProductSelectorPreview() {
     CafeteriaTheme {
-        AppSelector(
+        AppProductSelector(
             option = "Jamón",
             onOptionSelected = {}
         )
