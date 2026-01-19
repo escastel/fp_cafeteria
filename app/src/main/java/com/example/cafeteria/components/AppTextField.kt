@@ -2,6 +2,7 @@ package com.example.cafeteria.components
 
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,7 +23,7 @@ fun AppTextField(
         },
         placeholder = {
             Text(text = stringResource(R.string.tf_placeholder))
-        }
+        },
     )
 }
 

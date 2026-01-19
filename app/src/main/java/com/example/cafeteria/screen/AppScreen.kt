@@ -11,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -22,12 +23,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cafeteria.R
+import com.example.cafeteria.components.AppButton
+import com.example.cafeteria.components.AppCard
+import com.example.cafeteria.components.AppSelector
 import com.example.cafeteria.components.AppTextField
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
 @Composable
 fun AppScreen(modifier: Modifier = Modifier) {
     var username by remember { mutableStateOf("") }
+    var amount by remember { mutableIntStateOf(1) }
+    var option by remember { mutableStateOf("Jamón") }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -40,14 +47,29 @@ fun AppScreen(modifier: Modifier = Modifier) {
             modifier = Modifier.size(200.dp)
         )
         Spacer(modifier = Modifier.height(16.dp))
+
         Text(
             text = stringResource(R.string.title_app),
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
         )
+
         Spacer(modifier = Modifier.height(24.dp))
+
         AppTextField(username = username) { username = it }
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AppSelector(option = option, onOptionSelected = { option = it})
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AppCard(image = R.drawable.img_jamon, product = option, price = "20")
+
+        Spacer(modifier = Modifier.height(24.dp))
+
+        AppButton(text = stringResource(R.string.btn_confirm)) {}
     }
 }
 
