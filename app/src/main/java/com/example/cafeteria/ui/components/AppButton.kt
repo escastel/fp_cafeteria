@@ -16,7 +16,7 @@ fun AppButton(
     onClick: () -> Unit
 ) {
     Button(modifier = Modifier.fillMaxWidth(), onClick = onClick) {
-        Text(text)
+        Text(text = text)
     }
 }
 

@@ -30,7 +30,7 @@ fun AppAmountSelector(
             modifier = Modifier.size(width = 64.dp, height = 40.dp),
             onClick = { if (amount > 0) onAmountChange(amount - 1) }
         ) {
-            Text("-")
+            Text(text = "-")
         }
         Text(
             text = "$amount",
@@ -42,7 +42,7 @@ fun AppAmountSelector(
             modifier = Modifier.size(width = 64.dp, height = 40.dp),
             onClick = { onAmountChange(amount + 1) }
         ) {
-            Text("+")
+            Text(text = "+")
         }
     }
 }

@@ -35,20 +35,19 @@ fun AppProductSelector(
                 contentDescription = null
             )
         }
-    }
-
-    DropdownMenu(
-        expanded = expanded,
-        onDismissRequest = { expanded = false }
-    ) {
-        options.forEach { op ->
-            DropdownMenuItem(
-                text = { Text(text = op) },
-                onClick = {
-                    onOptionSelected(op)
-                    expanded = false
-                }
-            )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false },
+        ) {
+            options.forEach { op ->
+                DropdownMenuItem(
+                    text = { Text(text = op) },
+                    onClick = {
+                        onOptionSelected(op)
+                        expanded = false
+                    }
+                )
+            }
         }
     }
 }
