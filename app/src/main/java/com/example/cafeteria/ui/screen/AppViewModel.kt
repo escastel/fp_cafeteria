@@ -19,18 +19,30 @@ class AppViewModel(): ViewModel() {
 
     val productImages = ItemRepository().getProductImagesData()
 
+    /**
+     * Actualiza el nombre del usuario
+     */
     fun updateUsername(username: String){
         _uiState.update { it.copy(username = username) }
     }
 
+    /**
+     * Actualiza la cantidad de producto seleccionada
+     */
     fun updateAmount(amount: Int){
         _uiState.update { it.copy(amount = amount) }
     }
 
+    /**
+     * Actualiza el producto seleccionado
+     */
     fun updateOption(option: String){
         _uiState.update { it.copy(option = option) }
     }
 
+    /**
+     * Añade o actualiza un producto en la lista de pedidos
+     */
     fun updateOrder() {
         val currentState = _uiState.value
 
@@ -66,6 +78,13 @@ class AppViewModel(): ViewModel() {
         }
     }
 
+    /**
+     * Actualiza las varibles de diálogo.
+     *
+     * Si no se ha introducido el nombre de usuario, o productos al pedido,
+     * o ambos, actualizará `showErrorDialog` y `errorText`.
+     * Si ninguno de estos errores ha sucedido, actualizará `showDialog`.
+     */
     fun updateDialog() {
         val currentState = _uiState.value
 
@@ -88,6 +107,11 @@ class AppViewModel(): ViewModel() {
             _uiState.update { it.copy(showDialog = true) }
     }
 
+    /**
+     *  Cierra el diálogo de confirmación si se pulsa el botón de "Aceptar".
+     *
+     *  Esta función limpia la pantalla, borrando el nombre de usuario y el pedido.
+     */
     fun confirmConfirmDialog() {
         _uiState.update {
             it.copy(
@@ -99,10 +123,16 @@ class AppViewModel(): ViewModel() {
         }
     }
 
+    /**
+     * Cierra el diálogo de confirmación si se pulsa fuera del diálogo.
+     */
     fun dismissConfirmDialog() {
         _uiState.update { it.copy(showDialog = false) }
     }
 
+    /**
+     * Cierra el diálogo de error.
+     */
     fun dismissErrorDialog() {
         _uiState.update { it.copy(showErrorDialog = false) }
     }
