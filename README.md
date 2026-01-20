@@ -8,6 +8,10 @@ Una aplicación Android moderna desarrollada con **Jetpack Compose** que simula 
 
 ## Capturas de Pantalla
 
+| Pantalla Principal |  Pedido con Éxito  | Error con el Pedido |
+|:------------------:|:------------------:|:-------------------:|
+| ![Captura de Pantalla](screenshoots/AppScreen.png) | ![Captura de Pantalla](screenshoots/Dialog.png) | ![Captura de Pantalla](screenshoots/ErrorDialog.png) |
+
 ## 🛠️ Tecnologías y Librerías
 
 El proyecto utiliza las últimas prácticas de desarrollo en Android:
