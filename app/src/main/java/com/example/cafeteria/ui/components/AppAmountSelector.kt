@@ -16,6 +16,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente que contiene botones para seleccionar la cantidad de producto a pedir.
+ *
+ * @param amount Cantidad actual seleccionada
+ * @param onAmountChange Función que se ejecuta al pulsar alguno de los dos botones
+ * del componente, aumentando o disminuyendo la cantidad de proucto.
+ */
 @Composable
 fun AppAmountSelector(
     amount: Int,

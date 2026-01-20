@@ -16,6 +16,14 @@ import androidx.compose.ui.unit.dp
 import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente de diálogo que muestra un error al realizar el pedido.
+ * Este diálogo salta al no contener el nombre del usuario, cuando no se
+ * ha añadido un producto al pedido o ambos.
+ *
+ * @param text Mensaje de error personalizado que se muestra al usuario.
+ * @param onDismiss Función que se ejecuta cuando se cierra el diálogo dándole, o no, al botón "Entendido".
+ */
 @Composable
 fun AppErrorDialog(
     text: String,

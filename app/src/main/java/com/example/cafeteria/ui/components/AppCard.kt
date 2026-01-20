@@ -29,7 +29,12 @@ import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
 /**
+ *  Componente `Card` que muestra un producto en la lista del pedido.
  *
+ *  @param image Id del `drawable` de la imagen del producto
+ *  @param product Nombre del producto
+ *  @param price Precio total del producto
+ *  @param amount Cantidad de unidades del producto.
  */
 @Composable
 fun AppCard(

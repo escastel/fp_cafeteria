@@ -8,6 +8,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente dde campo de texto para introducir el nombre del usuario.
+ *
+ * @param username Nombre actual introducido por el usuario
+ * @param onValueChange Función que se ejecuta cuando el usuario modifica el texto introducido.
+ */
 @Composable
 fun AppTextField(
     username: String,

@@ -17,6 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente que contiene un botón con un menú desplegaaable `DropDown`.
+ * Permite al usuario elegir entre diferentes productos.
+ *
+ * @param option Producto actualmente seleccionado.
+ * @param onOptionSelected Función que se ejecuta cuando el usuario elige una opción.
+ */
 @Composable
 fun AppProductSelector(
     option: String,

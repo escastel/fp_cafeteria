@@ -35,6 +35,11 @@ import com.example.cafeteria.ui.components.AppProductSelector
 import com.example.cafeteria.ui.components.AppTextField
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Pantalla principal de la aplicación.
+ *
+ * @param modifier Modificador opcional paraa diseñar el contenedor raíz.
+ */
 @Composable
 fun AppScreen(modifier: Modifier = Modifier) {
     var username by remember { mutableStateOf("") }

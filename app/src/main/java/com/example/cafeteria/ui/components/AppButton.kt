@@ -10,6 +10,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente de botón personalizado.
+ *
+ * @param text Texto que se muestra dentro del botón.
+ * @param onClick Función que se ejecuta al pulsar el botón.
+ */
 @Composable
 fun AppButton(
     text: String,

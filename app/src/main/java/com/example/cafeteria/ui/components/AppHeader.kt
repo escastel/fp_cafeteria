@@ -19,6 +19,10 @@ import androidx.compose.ui.unit.dp
 import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente de cabecera de la aplicación.
+ * Muestra el logo y el título de esta.
+ */
 @Composable
 fun AppHeader() {
     Column(

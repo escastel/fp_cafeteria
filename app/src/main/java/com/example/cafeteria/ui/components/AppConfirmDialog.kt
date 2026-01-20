@@ -16,6 +16,12 @@ import androidx.compose.ui.unit.dp
 import com.example.cafeteria.R
 import com.example.cafeteria.ui.theme.CafeteriaTheme
 
+/**
+ * Componente de diálogo para realizar la confirmación del pedido.
+ *
+ * @param onDismiss Función que se ejecuta cuando se cierra el diálogo sin darle al botón "Aceptar".
+ * @param onConfirm Función que se ejecuta al pulsar el botón "Aceptar".
+ */
 @Composable
 fun AppConfirmDialog(
     onDismiss: () -> Unit,
