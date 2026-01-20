@@ -10,6 +10,7 @@
     <string name="text_err_user">Por favor, introduce tu nombre antes de confirmar el pedido</string>
     <string name="text_err_prod">Por favor, añade al menos un producto al pedido</string>
     <string name="text_err_user_prod">Por favor, introduce tu nombre y añade al menos un producto al pedido</string>
+    <string name="text_err_def">Un error ha sucedido con su pedido</string>
     <string name="btn_confirm">Confirmar pedido</string>
     <string name="btn_accept">Aceptar</string>
     <string name="btn_err">Entendido</string>

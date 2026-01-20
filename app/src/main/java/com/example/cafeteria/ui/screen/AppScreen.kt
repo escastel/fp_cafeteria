@@ -11,20 +11,16 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.cafeteria.R
-import com.example.cafeteria.data.ItemRepository
-import com.example.cafeteria.model.ItemUiModel
 import com.example.cafeteria.ui.components.AppAmountSelector
 import com.example.cafeteria.ui.components.AppButton
 import com.example.cafeteria.ui.components.AppCard
@@ -41,14 +37,11 @@ import com.example.cafeteria.ui.theme.CafeteriaTheme
  * @param modifier Modificador opcional paraa diseñar el contenedor raíz.
  */
 @Composable
-fun AppScreen(modifier: Modifier = Modifier) {
-    var username by remember { mutableStateOf("") }
-    var amount by remember { mutableIntStateOf(0) }
-    var option by remember { mutableStateOf("Jamón") }
-    var orderList by remember { mutableStateOf(listOf<ItemUiModel>()) }
-    var showDialog by remember { mutableStateOf(false) }
-    var showErrorDialog by remember { mutableStateOf(false) }
-    val productImages = ItemRepository().getProductImagesData()
+fun AppScreen(
+    modifier: Modifier = Modifier,
+    viewModel: AppViewModel = viewModel()
+) {
+    val uiState by viewModel.uiState.collectAsState()
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -61,40 +54,20 @@ fun AppScreen(modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        AppTextField(username = username) { username = it }
+        AppTextField(username = uiState.username) { viewModel.updateUsername(it) }
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        AppProductSelector(option = option, onOptionSelected = { option = it})
+        AppProductSelector(option = uiState.option, onOptionSelected = { viewModel.updateOption(it) })
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        AppAmountSelector(amount = amount, onAmountChange = { amount = it })
+        AppAmountSelector(amount = uiState.amount, onAmountChange = { viewModel.updateAmount(it) })
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        AppButton(text = "Añadir pedido (${amount * 10}€)") {
-            if (amount > 0){
-                val index = orderList.indexOfFirst { it.product == option }
-                if (index != -1){
-                    val updateOrder = orderList[index].copy(
-                        amount = orderList[index].amount + amount,
-                        price = orderList[index].price + (amount * 10)
-                    )
-                    orderList = orderList.toMutableList().apply {
-                        set(index, updateOrder)
-                    }
-                }
-                else {
-                    orderList = orderList + ItemUiModel(
-                        drawable = productImages.getValue(option),
-                        product = option,
-                        price = amount * 10,
-                        amount = amount
-                    )
-                }
-                amount = 0
-            }
+        AppButton(text = "Añadir pedido (${uiState.amount * 10}€)") {
+            viewModel.updateOrder()
         }
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -104,14 +77,14 @@ fun AppScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Lista de pedidos (${orderList.size}) para $username",
+            text = "Lista de pedidos (${uiState.orderList.size}) para ${uiState.username}",
             color = Color.Green,
             modifier = Modifier.fillMaxWidth()
         )
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        orderList.forEach { order ->
+        uiState.orderList.forEach { order ->
             AppCard(
                 image = order.drawable,
                 product = order.product,
@@ -124,36 +97,27 @@ fun AppScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
 
         AppButton(text = stringResource(R.string.btn_confirm)) {
-            if (orderList.isNotEmpty() && username.isNotBlank())
-                showDialog = true
-            else
-                showErrorDialog = true
+            viewModel.updateDialog()
         }
     }
 
-    if (showDialog){
+    if (uiState.showDialog){
         AppConfirmDialog(
-            onDismiss = { showDialog = false },
-            onConfirm = {
-                orderList = listOf()
-                username = ""
-                showDialog = false
-            }
+            onDismiss = { viewModel.dismissConfirmDialog() },
+            onConfirm = { viewModel.confirmConfirmDialog() }
         )
     }
 
-    if (showErrorDialog){
-        val text: String
-        if (username.isBlank() && orderList.isEmpty())
-            text = stringResource(R.string.text_err_user_prod)
-        else if (username.isBlank())
-            text = stringResource(R.string.text_err_user)
-        else
-            text = stringResource(R.string.text_err_prod)
-
+    if (uiState.showErrorDialog){
+        val text = when(uiState.errorText) {
+            1 -> stringResource(R.string.text_err_user_prod)
+            2 -> stringResource(R.string.text_err_user)
+            3 -> stringResource(R.string.text_err_prod)
+            else -> stringResource(R.string.text_err_def)
+        }
         AppErrorDialog(
             text = text,
-            onDismiss = { showErrorDialog = false }
+            onDismiss = { viewModel.dismissErrorDialog() }
         )
     }
 }
